@@ -9,7 +9,6 @@
 	</head>
 	<body>
 		@yield('content')
-		
 		<script src="{{ asset('assets/js/main.min.js') }}"></script>
 	</body>
 </html>
