@@ -20,5 +20,9 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-	return view('layout');
+	return redirect('tasks');
+});
+
+Route::prefix('tasks')->group(function () {
+	Route::get('', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
 });
