@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* IOAN ROBCIUC
 Route::get('/', function () {
     return view('welcome');
+});
+*/
+
+Route::get('/', function () {
+	return view('layout');
 });
