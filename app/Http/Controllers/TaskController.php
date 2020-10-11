@@ -13,20 +13,6 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($request->get('order-by')) && $request->get('order-by') === 'weeks') {
-            return $this->indexTasksWithOrderBy();
-        }
-
-        return $this->indexTasks();
-    }
-
-    private function indexTasks()
-    {
-        return view('tasks');
-    }
-
-    private function indexTasksWithOrderBy()
-    {
         return view('tasks');
     }
 
