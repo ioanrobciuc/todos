@@ -30,44 +30,7 @@ class TaskController extends Controller
         $data = [];
 
         if ($orderByWeeks === true) {
-            $data = [
-                0 => (object) [
-                    'header' => (object) [
-                        'title' => 'Week 1',
-                        'subtitle' => '40 - Hours',
-                        'button_text' => 'Go back',
-                        'button_url' => route('tasks.index')
-                    ],
-                    'tasks' => $tasks
-                ],
-                1 => (object) [
-                    'header' => (object) [
-                        'title' => 'Week 2',
-                        'subtitle' => '40 - Hours',
-                        'button_text' => 'Go back',
-                        'button_url' => route('tasks.index')
-                    ],
-                    'tasks' => $tasks
-                ],
-                2 => (object) [
-                    'header' => (object) [
-                        'title' => 'Week 3',
-                        'subtitle' => '40 - Hours',
-                        'button_text' => 'Go back',
-                        'button_url' => route('tasks.index')
-                    ],
-                    'tasks' => $tasks
-                ],
-                3 => (object) [
-                    'header' => (object) [
-                        'title' => 'Week 4',
-                        'subtitle' => '40 - Hours',
-                        'button_text' => 'Go back',
-                        'button_url' => route('tasks.index')
-                    ],
-                    'tasks' => $tasks
-                ]
-            ];
+            $data = [];
         } else {
             $data = [
                 0 => (object) [
