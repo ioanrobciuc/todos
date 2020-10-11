@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employee as EmployeeModel;
+use App\Models\EmployeeTask as EmployeeTaskModel;
 
 class TaskController extends Controller
 {
@@ -13,16 +15,18 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $employeeId = EmployeeModel::first()->id;
+
         $orderBy = $request->get('order-by');
         $orderByWeeks = !empty($orderBy) && $orderBy === 'weeks' ? true : false;
 
         return view('tasks', [
-            'data' => $this->processingData($orderByWeeks),
+            'data' => $this->processingData($employeeId, $orderByWeeks),
             'showForm' => !$orderByWeeks
         ]);
     }
 
-    private function processingData(bool $orderByWeeks)
+    private function processingData(int $employeeId, bool $orderByWeeks)
     {
         if ($orderByWeeks === true) {
             $data = [
@@ -33,7 +37,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
                 ],
                 1 => (object) [
                     'header' => (object) [
@@ -42,7 +46,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
                 ],
                 2 => (object) [
                     'header' => (object) [
@@ -51,7 +55,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
                 ],
                 3 => (object) [
                     'header' => (object) [
@@ -60,7 +64,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
                 ]
             ];
         } else {
@@ -72,7 +76,7 @@ class TaskController extends Controller
                         'button_text' => 'Organize tasks',
                         'button_url' => sprintf('%s?order-by=weeks', route('tasks.index'))
                     ],
-                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
                 ]
             ];
         }
