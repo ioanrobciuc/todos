@@ -27,4 +27,11 @@
 			<button type="submit">Add task</button>
 		</form>
 	@endif
+	@if ($errors->any())
+		<ul id="errors">
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	@endif
 @endsection

@@ -15,13 +15,11 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $employeeId = EmployeeModel::first()->id;
-
         $orderBy = $request->get('order-by');
         $orderByWeeks = !empty($orderBy) && $orderBy === 'weeks' ? true : false;
 
         return view('tasks', [
-            'data' => $this->processingData($employeeId, $orderByWeeks),
+            'data' => $this->processingData(EmployeeModel::first()->id, $orderByWeeks),
             'showForm' => !$orderByWeeks
         ]);
     }
@@ -102,7 +100,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required',
+            'hours-worked' => 'required|integer|min:1|max:20'
+        ]);
+
+        $employeeTask = new EmployeeTaskModel;
+        $employeeTask->employee_id = EmployeeModel::first()->id;
+        $employeeTask->hours_worked = $request->post('hours-worked');
+        $employeeTask->description = $request->post('description');
+        $employeeTask->save();
+
+        return redirect()->action([\App\Http\Controllers\TaskController::class, 'index'], []);
     }
 
     /**

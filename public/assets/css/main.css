@@ -141,6 +141,7 @@ body {
 	height: 48px;
 	padding: 0 20px;
 	border-radius: 10px;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 }
@@ -168,4 +169,12 @@ body {
 	font-weight: 700;
 	color: #ffffff;
 	float: left;
+}
+#container ul#errors {
+	margin: 25px 0 0 0;
+	padding: 0;
+	list-style-type: none;
+}
+#container ul#errors li {
+	color: red;
 }
