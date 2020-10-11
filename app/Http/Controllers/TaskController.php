@@ -16,7 +16,10 @@ class TaskController extends Controller
         $orderBy = $request->get('order-by');
         $orderByWeeks = !empty($orderBy) && $orderBy === 'weeks' ? true : false;
 
-        return view('tasks', ['data' => $this->processingData($orderByWeeks)]);
+        return view('tasks', [
+            'data' => $this->processingData($orderByWeeks),
+            'showForm' => !$orderByWeeks
+        ]);
     }
 
     private function processingData(bool $orderByWeeks)

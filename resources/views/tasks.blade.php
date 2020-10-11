@@ -19,4 +19,12 @@
 			@endforeach
 		</div>
 	@endforeach
+	@if ($showForm === true)
+		<form class="clearfix" method="POST" action="{{ route('tasks.store') }}">
+			@csrf
+			<input class="enter-task-here" type="text" placeholder="Enter task here..." value="" />
+			<input class="enter-hours" type="text" placeholder="Enter hours..." value="">
+			<button type="submit">Add task</button>
+		</form>
+	@endif
 @endsection
