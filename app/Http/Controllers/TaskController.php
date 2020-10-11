@@ -26,6 +26,9 @@ class TaskController extends Controller
 
     private function processingData(int $employeeId, bool $orderByWeeks)
     {
+        $tasks = EmployeeTaskModel::where('employee_id', '=', $employeeId)->get();
+        $data = [];
+
         if ($orderByWeeks === true) {
             $data = [
                 0 => (object) [
@@ -35,7 +38,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
+                    'tasks' => $tasks
                 ],
                 1 => (object) [
                     'header' => (object) [
@@ -44,7 +47,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
+                    'tasks' => $tasks
                 ],
                 2 => (object) [
                     'header' => (object) [
@@ -53,7 +56,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
+                    'tasks' => $tasks
                 ],
                 3 => (object) [
                     'header' => (object) [
@@ -62,7 +65,7 @@ class TaskController extends Controller
                         'button_text' => 'Go back',
                         'button_url' => route('tasks.index')
                     ],
-                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
+                    'tasks' => $tasks
                 ]
             ];
         } else {
@@ -74,7 +77,7 @@ class TaskController extends Controller
                         'button_text' => 'Organize tasks',
                         'button_url' => sprintf('%s?order-by=weeks', route('tasks.index'))
                     ],
-                    'tasks' => EmployeeTaskModel::where('employee_id', '=', $employeeId)->get()
+                    'tasks' => $tasks
                 ]
             ];
         }
