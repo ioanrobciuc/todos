@@ -9,25 +9,26 @@ body {
 	font-weight: 400;
 	font-size: 14px;
 	color: #192245;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
 }
 #container {
 	width: 440px;
 	height: auto;
 	background-color: #ffffff;
+	margin: 30px auto;
 	padding: 30px;
 }
-#container .header {
+#container .tasks-group {
 	width: 100%;
 	height: auto;
+	margin-top: 30px;
+}
+#container .tasks-group:first-of-type {
+	margin-top: 0;
+}
+#container .tasks-group .header {
+	width: 100%;
+	height: auto;
+	margin-bottom: 25px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -35,16 +36,16 @@ body {
 	-ms-flex-align: center;
 	align-items: center;
 }
-#container .header .left {
+#container .tasks-group .header .left {
 	width: 100%;
 }
-#container .header .left h2 {
+#container .tasks-group .header .left h2 {
 	line-height: 20px;
 	margin: 0;
 	font-weight: 700;
 	font-size: 24px;
 }
-#container .header .left p {
+#container .tasks-group .header .left p {
 	line-height: 14px;
 	margin: 6px 0 0 0;
 	font-weight: 500;
@@ -52,7 +53,7 @@ body {
 	color: #37416C;
 	opacity: 0.5;
 }
-#container .header .right {
+#container .tasks-group .header .right {
 	width: 100%;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -61,7 +62,7 @@ body {
 	-ms-flex-pack: end;
 	justify-content: end;
 }
-#container .header .right a {
+#container .tasks-group .header .right a {
 	width: auto;
 	height: 38px;
 	line-height: 36px;
@@ -76,7 +77,46 @@ body {
 	font-size: 14px;
 	color: #0DACFF;
 }
-#container .header .right a:hover {
+#container .tasks-group .header .right a:hover {
 	background-color: #0DACFF;
 	color: #ffffff;
+}
+#container .tasks-group .border {
+	width: 100%;
+	height: 1px;
+	background-color: #37416C;
+	opacity: 0.2;
+}
+#container .tasks-group .task {
+	width: 100%;
+	height: auto;
+	padding: 18.5px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	cursor: pointer;
+}
+#container .tasks-group .task .task-circle {
+	width: 30px;
+	height: 30px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #37416C;
+	border-radius: 50px;
+	opacity: 0.5;
+}
+#container .tasks-group .task p {
+	margin: 0;
+}
+#container .tasks-group .task p.task-description {
+	margin-left: 10px;
+	opacity: 0.6;
+}
+#container .tasks-group .task p.task-hours-worked {
+	margin-left: auto;
+	font-weight: 700;
+	color: #37416C;
 }

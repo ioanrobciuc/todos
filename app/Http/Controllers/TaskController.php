@@ -11,9 +11,70 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('tasks');
+        $orderBy = $request->get('order-by');
+        $orderByWeeks = !empty($orderBy) && $orderBy === 'weeks' ? true : false;
+
+        return view('tasks', ['data' => $this->processingData($orderByWeeks)]);
+    }
+
+    private function processingData(bool $orderByWeeks)
+    {
+        if ($orderByWeeks === true) {
+            $data = [
+                0 => (object) [
+                    'header' => (object) [
+                        'title' => 'Week 1',
+                        'subtitle' => '40 - Hours',
+                        'button_text' => 'Go back',
+                        'button_url' => route('tasks.index')
+                    ],
+                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                ],
+                1 => (object) [
+                    'header' => (object) [
+                        'title' => 'Week 2',
+                        'subtitle' => '40 - Hours',
+                        'button_text' => 'Go back',
+                        'button_url' => route('tasks.index')
+                    ],
+                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                ],
+                2 => (object) [
+                    'header' => (object) [
+                        'title' => 'Week 3',
+                        'subtitle' => '40 - Hours',
+                        'button_text' => 'Go back',
+                        'button_url' => route('tasks.index')
+                    ],
+                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                ],
+                3 => (object) [
+                    'header' => (object) [
+                        'title' => 'Week 4',
+                        'subtitle' => '40 - Hours',
+                        'button_text' => 'Go back',
+                        'button_url' => route('tasks.index')
+                    ],
+                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                ]
+            ];
+        } else {
+            $data = [
+                0 => (object) [
+                    'header' => (object) [
+                        'title' => 'Tasks',
+                        'subtitle' => '',
+                        'button_text' => 'Organize tasks',
+                        'button_url' => sprintf('%s?order-by=weeks', route('tasks.index'))
+                    ],
+                    'tasks' => \App\Models\EmployeeTask::where('employee_id', '=', 1)->get()
+                ]
+            ];
+        }
+
+        return $data;
     }
 
     /**

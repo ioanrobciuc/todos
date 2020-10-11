@@ -1,9 +1,13 @@
 <div class="header">
 	<div class="left">
-		<h2>Tasks</h2>
-		<p>40 - Hours</p>
+		<h2>{{ $title }}</h2>
+		@if (!empty($subtitle))
+			<p>{{ $subtitle }}</p>
+		@endif
 	</div>
 	<div class="right">
-		<a href="{{ sprintf('%s?order-by=weeks', route('tasks.index')) }}" title="Organize tasks">Organize tasks</a>
+		@if ($key === 0)
+			<a href="{{ $button_url }}" title="{{ $button_text }}">{{ $button_text }}</a>
+		@endif
 	</div>
 </div>
