@@ -108,6 +108,11 @@ body {
 	border-radius: 50px;
 	opacity: 0.5;
 }
+#container .tasks-group .task .task-circle.active {
+	background-color: #00A7FF;
+	border-color: #00A7FF;
+	opacity: 1;
+}
 #container .tasks-group .task p {
 	margin: 0;
 }
