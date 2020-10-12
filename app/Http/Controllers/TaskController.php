@@ -36,7 +36,8 @@ class TaskController extends Controller
         $data = [];
 
         if ($orderByWeeks === true) {
-            new CalculateHoursForOrderByWeeks($tasks->orderBy('hours_worked', 'DESC')->get());
+            $calculateHoursForOrderByWeeks = new CalculateHoursForOrderByWeeks($tasks->orderBy('hours_worked', 'DESC')->get());
+            $data = $calculateHoursForOrderByWeeks->getData();
         } else {
             $data = [
                 0 => (object) [
