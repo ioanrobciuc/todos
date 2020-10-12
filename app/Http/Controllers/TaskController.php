@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee as EmployeeModel;
 use App\Models\EmployeeTask as EmployeeTaskModel;
+use App\Helpers\CalculateHoursForOrderByWeeks;
 
 class TaskController extends Controller
 {
@@ -24,13 +25,18 @@ class TaskController extends Controller
         ]);
     }
 
+    /**
+     *  Processing data.
+     *
+     *  @return array
+     */
     private function processingData(int $employeeId, bool $orderByWeeks)
     {
-        $tasks = EmployeeTaskModel::where('employee_id', '=', $employeeId)->get();
+        $tasks = EmployeeTaskModel::where('employee_id', '=', $employeeId);
         $data = [];
 
         if ($orderByWeeks === true) {
-            $data = [];
+            new CalculateHoursForOrderByWeeks($tasks->orderBy('hours_worked', 'DESC')->get());
         } else {
             $data = [
                 0 => (object) [
@@ -40,7 +46,7 @@ class TaskController extends Controller
                         'button_text' => 'Organize tasks',
                         'button_url' => sprintf('%s?order-by=weeks', route('tasks.index'))
                     ],
-                    'tasks' => $tasks
+                    'tasks' => $tasks->orderBy('id', 'DESC')->get()
                 ]
             ];
         }
