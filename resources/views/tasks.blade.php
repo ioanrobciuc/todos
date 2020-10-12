@@ -27,11 +27,11 @@
 			<button type="submit">Add task</button>
 		</form>
 	@endif
-	@if ($errors->any())
-		<ul id="errors">
+	<ul id="errors" class="{{ !empty($errors->any()) ? 'display-block' : 'display-none' }}">
+		@if ($errors->any())
 			@foreach ($errors->all() as $error)
 				<li>{{ $error }}</li>
 			@endforeach
-		</ul>
-	@endif
+		@endif
+	</ul>
 @endsection

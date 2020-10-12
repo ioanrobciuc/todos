@@ -175,6 +175,12 @@ body {
 	padding: 0;
 	list-style-type: none;
 }
+#container ul#errors.display-block {
+	display: block;
+}
+#container ul#errors.display-none {
+	display: none;
+}
 #container ul#errors li {
 	color: red;
 }
